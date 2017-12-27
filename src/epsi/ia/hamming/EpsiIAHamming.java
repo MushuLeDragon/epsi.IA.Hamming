@@ -5,6 +5,9 @@
  */
 package epsi.ia.hamming;
 
+import static epsi.ia.hamming.CreateList.CreateList;
+
+
 /**
  *
  * @author Mushu
@@ -16,6 +19,8 @@ public class EpsiIAHamming {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        CreateList();
     }
     
 }
