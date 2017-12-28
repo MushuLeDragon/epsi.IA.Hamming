@@ -1,3 +1,10 @@
-# Little school program to determinate Hamming distance
+# Hamming distance
 
-Coded in `Java Language`
+## How does it works ?
+
+- Create your table list :
+  - How many examples ?
+  - How many entities ?
+  
+- How many clusters you want
+- Results
