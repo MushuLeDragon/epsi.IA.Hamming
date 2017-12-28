@@ -1,2 +1,3 @@
-# epsi.IA.Hamming
-Little school program to determinate Hamming distance
+# Little school program to determinate Hamming distance
+
+Coded in `Java Language`
