@@ -19,11 +19,8 @@ public class CreateList {
             numberOfExamples = scan.nextInt();
         }
 
-        if (numberOfExamples == 1) {
-            System.out.println("Vous avez choisi d'entrer " + numberOfExamples + " exemple.");
-        } else {
             System.out.println("Vous avez choisi d'entrer " + numberOfExamples + " exemples.");
-        }
+        
 
         System.out.println("Combien d'entités formeront votre tableau (entier > 0) ?");
         numberOfEntities = scan.nextInt();
@@ -33,18 +30,14 @@ public class CreateList {
             numberOfEntities = scan.nextInt();
         }
 
-        if (numberOfExamples == 1) {
-            System.out.println("Vous avez choisi d'entrer " + numberOfEntities + " entité.");
-        } else {
             System.out.println("Vous avez choisi d'entrer " + numberOfEntities + " entités.");
-        }
-
+        
         Object[][] TableList = new Object[numberOfExamples][numberOfEntities];
-        /*
+        
         for (int i = 0; i < numberOfExamples; i++) {
             
         }
-        
+        /*
         o[0][0] = 1;
         o[0][1] = "hello";
 
