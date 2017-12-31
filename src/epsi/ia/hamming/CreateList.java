@@ -32,7 +32,7 @@ public class CreateList {
         System.out.println("Vous avez choisi d'entrer " + numberOfEntities + " entités.");
 
         Object[][] TableList = new Object[numberOfExamples][numberOfEntities];
-        
+
         /*
         for (int i = 0; i < numberOfExamples; i++) {
             System.out.println("Exemple " + (i + 1) + " :");
@@ -44,7 +44,6 @@ public class CreateList {
             }
         }
          */
-        
         TableList[0][0] = "Claire";
         TableList[0][1] = "2";
         TableList[0][2] = "2";
@@ -98,7 +97,7 @@ public class CreateList {
         for (int i = 0; i < numberOfExamples; i++) {
             System.out.println(" | " + TableList[i][0] + " | " + TableList[i][1] + " | " + TableList[i][2] + " | " + TableList[i][3] + " | ");
         }
-
+//Test commit
     }
-    
+
 }
