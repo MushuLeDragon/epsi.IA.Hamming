@@ -96,10 +96,9 @@ public class CreateList {
         TableList[9][3] = "Épaisse";
 
         for (int i = 0; i < numberOfExamples; i++) {
-            System.out.println(TableList[i][0] + " | " + TableList[i][1] + " | " + TableList[i][2] + " | " + TableList[i][3] + " | ");
+            System.out.println(" | " + TableList[i][0] + " | " + TableList[i][1] + " | " + TableList[i][2] + " | " + TableList[i][3] + " | ");
         }
 
-        
     }
-
+    
 }
