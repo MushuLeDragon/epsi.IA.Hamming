@@ -15,21 +15,21 @@ public class CreateList {
         numberOfExamples = 10;
 
         while (numberOfExamples < -1) {
-            System.out.println("Le chiffre choisi n'est pas un entier > à 0");
+            System.out.println("Le chiffre choisi n'est pas un entier > Ã  0");
             numberOfExamples = scan.nextInt();
         }
 
         System.out.println("Vous avez choisi d'entrer " + numberOfExamples + " exemples.");
 
-        System.out.println("Combien d'entités formeront votre tableau (entier > 0) ?");
+        System.out.println("Combien d'entitÃ©s formeront votre tableau (entier > 0) ?");
         //numberOfEntities = scan.nextInt();
         numberOfEntities = 4;
         while (numberOfEntities < -1) {
-            System.out.println("Le chiffre choisi n'est pas un entier > à 0");
+            System.out.println("Le chiffre choisi n'est pas un entier > Ã  0");
             numberOfEntities = scan.nextInt();
         }
 
-        System.out.println("Vous avez choisi d'entrer " + numberOfEntities + " entités.");
+        System.out.println("Vous avez choisi d'entrer " + numberOfEntities + " entitÃ©s.");
 
         Object[][] TableList = new Object[numberOfExamples][numberOfEntities];
 
@@ -37,7 +37,7 @@ public class CreateList {
         for (int i = 0; i < numberOfExamples; i++) {
             System.out.println("Exemple " + (i + 1) + " :");
             for (int j = 0; j < numberOfEntities; j++) {
-                System.out.println("---- Entité " + (j + 1) + " :");
+                System.out.println("---- EntitÃ© " + (j + 1) + " :");
 
                 TableList[i][j] = scan.nextLine();
                 System.out.println(TableList[i][j]);
@@ -54,7 +54,7 @@ public class CreateList {
         TableList[1][2] = "2";
         TableList[1][3] = "Fine";
 
-        TableList[2][0] = "Foncée";
+        TableList[2][0] = "FoncÃ©e";
         TableList[2][1] = "2";
         TableList[2][2] = "2";
         TableList[2][3] = "Fine";
@@ -67,34 +67,34 @@ public class CreateList {
         TableList[4][0] = "Claire";
         TableList[4][1] = "2";
         TableList[4][2] = "2";
-        TableList[4][3] = "Épaisse";
+        TableList[4][3] = "Ã‰paisse";
 
         TableList[5][0] = "Claire";
         TableList[5][1] = "1";
         TableList[5][2] = "1";
-        TableList[5][3] = "Épaisse";
+        TableList[5][3] = "Ã‰paisse";
 
-        TableList[6][0] = "Foncée";
+        TableList[6][0] = "FoncÃ©e";
         TableList[6][1] = "2";
         TableList[6][2] = "2";
-        TableList[6][3] = "Épaisse";
+        TableList[6][3] = "Ã‰paisse";
 
-        TableList[7][0] = "Foncée";
+        TableList[7][0] = "FoncÃ©e";
         TableList[7][1] = "1";
         TableList[7][2] = "1";
         TableList[7][3] = "Fine";
 
-        TableList[8][0] = "Foncée";
+        TableList[8][0] = "FoncÃ©e";
         TableList[8][1] = "1";
         TableList[8][2] = "1";
-        TableList[8][3] = "Épaisse";
+        TableList[8][3] = "Ã‰paisse";
 
-        TableList[9][0] = "Foncée";
+        TableList[9][0] = "FoncÃ©e";
         TableList[9][1] = "2";
         TableList[9][2] = "1";
-        TableList[9][3] = "Épaisse";
+        TableList[9][3] = "Ã‰paisse";
 
-        System.out.println("Tableau des entités :");
+        System.out.println("Tableau des entitÃ©s :");
         for (int i = 0; i < numberOfExamples; i++) {
             System.out.println(" | " + TableList[i][0] + " | " + TableList[i][1] + " | " + TableList[i][2] + " | " + TableList[i][3] + " | ");
         }
@@ -102,7 +102,7 @@ public class CreateList {
         //Distance de Hamming :
         int hammingArray[][] = new int[numberOfExamples][numberOfExamples];
 
-        //Nombre d'exemples étudiés
+        //Nombre d'exemples Ã©tudiÃ©s
         for (int i = 0; i < numberOfExamples; i++) {
 
             //Nombres de fois ou on compare l'exemple
@@ -110,7 +110,7 @@ public class CreateList {
 
                 int hammingCount = 0;
 
-                //Nombre de fois où on compare les entités
+                //Nombre de fois oÃ¹ on compare les entitÃ©s
                 for (int k = 0; k < numberOfEntities; k++) {
 
                     if (TableList[i][k] != TableList[j][k]) {
@@ -118,7 +118,7 @@ public class CreateList {
                     }
                 }
                 hammingArray[i][j] = hammingCount;
-                //System.out.println(" Nombre de différences entre l'exemple " + (i + 1) + " et l'exemple " + (j + 1) + " : " + hammingArray[i][j]);
+                //System.out.println(" Nombre de diffÃ©rences entre l'exemple " + (i + 1) + " et l'exemple " + (j + 1) + " : " + hammingArray[i][j]);
 
             }
         }
@@ -147,7 +147,7 @@ public class CreateList {
                     maxHammingDistance = hammingArray[i][j];
                 }
 
-                //System.out.println("Résultat : Mini = " + minHammingDistance + " || Maxi = " + maxHammingDistance);
+                //System.out.println("RÃ©sultat : Mini = " + minHammingDistance + " || Maxi = " + maxHammingDistance);
 
             }
         }
@@ -169,7 +169,7 @@ public class CreateList {
             }
             
         }
-
+// https://commons.apache.org/proper/commons-text/jacoco/org.apache.commons.text.similarity/HammingDistance.java.html
     }
 
 }
