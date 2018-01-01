@@ -94,17 +94,13 @@ public class CreateList {
         TableList[9][2] = "1";
         TableList[9][3] = "Épaisse";
 
+        System.out.println("Tableau des entités :");
         for (int i = 0; i < numberOfExamples; i++) {
             System.out.println(" | " + TableList[i][0] + " | " + TableList[i][1] + " | " + TableList[i][2] + " | " + TableList[i][3] + " | ");
         }
 
-        //Java ne supporte pas directement les tableaux à plusieurs dimensions : il faut déclarer un tableau de tableau.
+        //Distance de Hamming :
         int hammingArray[][] = new int[numberOfExamples][numberOfExamples];
-        /*
-        for (int i = 0; i < numberOfExamples; i++) {
-            hammingArray[i] = new int[numberOfExamples];
-        }
-         */
 
         //Nombre d'exemples étudiés
         for (int i = 0; i < numberOfExamples; i++) {
@@ -120,18 +116,58 @@ public class CreateList {
                     if (TableList[i][k] != TableList[j][k]) {
                         hammingCount++;
                     }
-
                 }
-
                 hammingArray[i][j] = hammingCount;
-                System.out.println(" Nombre de différences entre l'exemple " + (i + 1) + " et l'exemple " + (j + 1) + " : " + hammingArray[i][j]);
+                //System.out.println(" Nombre de différences entre l'exemple " + (i + 1) + " et l'exemple " + (j + 1) + " : " + hammingArray[i][j]);
 
             }
-
         }
 
+        System.out.println("Tableau des distances de Hamming :");
         for (int i = 0; i < numberOfExamples; i++) {
             System.out.println(" | " + hammingArray[i][0] + " | " + hammingArray[i][1] + " | " + hammingArray[i][2] + " | " + hammingArray[i][3] + " | " + hammingArray[i][4] + " | " + hammingArray[i][5] + " | " + hammingArray[i][6] + " | " + hammingArray[i][7] + " | " + hammingArray[i][8] + " | " + hammingArray[i][9] + " | ");
+        }
+
+        //Les Clusters :
+        int minHammingDistance = hammingArray[0][1];
+        int maxHammingDistance = hammingArray[0][1];
+
+        for (int i = 0; i < numberOfExamples; i++) {
+            //System.out.println("Exemple " + (i + 1));
+            for (int j = (i + 1); j < numberOfExamples; j++) {
+                //System.out.println("Comparaison avec l'exemple " + (j + 1));
+                //System.out.println("Hamming mini : " + minHammingDistance + " || Hamming maxi : " + maxHammingDistance + " >> Valeur a comparer : " + hammingArray[i][j]);
+
+                if (minHammingDistance > hammingArray[i][j]) {
+                    minHammingDistance = hammingArray[i][j];
+                    System.out.println(hammingArray[i][j]);
+                }
+
+                if (maxHammingDistance < hammingArray[i][j]) {
+                    maxHammingDistance = hammingArray[i][j];
+                }
+
+                //System.out.println("Résultat : Mini = " + minHammingDistance + " || Maxi = " + maxHammingDistance);
+
+            }
+        }
+        System.out.println("Distance de Hamming minimale : " + minHammingDistance);
+        System.out.println("Distance de Hamming maximale : " + maxHammingDistance);
+
+        System.out.println("En combien de clusteurs voulez-vous diviser les exemples ?");
+        //int cluster = scan.nextInt();
+        int cluster = 2;
+
+        int clusterArray[][] = new int[cluster][];
+
+        for (int i = 0; i < numberOfExamples; i++) {
+            for (int j = 0; j < numberOfExamples; j++) {
+                if(hammingArray[i][j] == minHammingDistance) {
+                    clusterArray[0][0] = (j+1); 
+                    
+                }
+            }
+            
         }
 
     }
