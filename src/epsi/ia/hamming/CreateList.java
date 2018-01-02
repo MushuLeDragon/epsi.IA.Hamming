@@ -1,6 +1,7 @@
 package epsi.ia.hamming;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class CreateList {
@@ -111,7 +112,7 @@ public class CreateList {
 
                 int hammingCount = 0;
 
-                //Nombre de fois oÃ¹ on compare les entités
+                //Nombre de fois où on compare les entités
                 for (int k = 0; k < numberOfEntities; k++) {
 
                     if (TableList[i][k] != TableList[j][k]) {
@@ -157,23 +158,102 @@ public class CreateList {
         System.out.println("En combien de clusteurs voulez-vous diviser les exemples ?");
         //int cluster = scan.nextInt();
         int cluster = 2;
+        System.out.println("Vous avez choisi de séparer les exemples en " + cluster + " cluster(s).");
 
-        //int clusterArray[] = new int[cluster];
-        
+        List<Integer> exampleList = new ArrayList<Integer>();
+        for (int i = 0; i < numberOfExamples; i++) {
+            exampleList.add(i + 1);
+        }
+
+        List<Integer> restExampleList = new ArrayList<Integer>();
+
+        List<List<Integer>> clusterArray = new ArrayList<List<Integer>>();
+        for (int i = 0; i < cluster; i++) {
+            List<Integer> clusterList = new ArrayList<>();
+
+            for (int x = 0; x < numberOfExamples; x++) {
+                System.out.println("Exemple " + (x + 1));
+
+                for (int y = (x + 1); y < numberOfExamples; y++) {
+
+                    int z = 0;
+
+                    if (restExampleList.size() != 0) {
+                        for (z = 0; z < restExampleList.size(); z++) {
+                            //System.out.println("RestClustur en stck : " + restExampleList.get(z));
+                            if ((x + 1) == restExampleList.get(z)) {
+                                System.out.println("Exemple " + (x + 1) + " non compté car ne fait pas partie du petit cluster");
+                                break;
+                            }
+                        }
+                    }
+
+                    if (hammingArray[x][y] == minHammingDistance) {
+                        clusterList.add(y);
+                        System.out.println("Ajout de l'exemple " + (y + 1) + " au cluster 1");
+
+                    } else if (hammingArray[x][y] == maxHammingDistance) {
+                        restExampleList.add((y + 1));
+                        System.out.println("Ajout de l'exemple " + (y + 1) + " a la liste d'attente");
+                        System.out.println("Taille de la liste ResteCluster " + restExampleList.size());
+                    }
+                }
+            }
+
+            /*
+            if (i == 0) {
+
+                clusterList.add(1);
+                clusterList.add(2);
+                clusterList.add(3);
+                clusterList.add(4);
+                clusterList.add(5);
+                clusterList.add(7);
+            } else if (i == 1) {
+
+                clusterList.add(6);
+                clusterList.add(8);
+                clusterList.add(9);
+                clusterList.add(10);
+            }*/
+            clusterArray.add(clusterList);
+        }
+
+        for (int i = 0; i < clusterArray.size(); i++) {
+
+            System.out.println("Cluster " + (i + 1));
+
+            ArrayList<Integer> currentList = (ArrayList<Integer>) clusterArray.get(i);
+            //now iterate on the current list
+            for (int j = 0; j < currentList.size(); j++) {
+                Integer s = currentList.get(j);
+                System.out.println(s);
+            }
+        }
+
+        for (int i = 0; i < clusterArray.size(); i++) {
+
+            System.out.println("Cluster " + (i + 1));
+
+            ArrayList<Integer> currentList = (ArrayList<Integer>) clusterArray.get(i);
+            //now iterate on the current list
+            for (int j = 0; j < currentList.size(); j++) {
+                Integer s = currentList.get(j);
+                System.out.println(s);
+            }
+        }
+
         /*
+        ArrayList<ArrayList<Integer>> clusterArray = new ArrayList<ArrayList<Integer>>();
+
         for (int i = 0; i < cluster; i++) {
 
             ArrayList<Integer> clusterList = new ArrayList<Integer>();
-            clusterArray[i] =;
 
         }
 
-         */
-        ArrayList<ArrayList<Integer>> clusterArray = new ArrayList<ArrayList<Integer>>();
         
-                for (int i = 0; i < cluster; i++) {
-                    
-                }
+        ArrayList<ArrayList<Integer>> clusterArray = new ArrayList<ArrayList<Integer>>();
 
         ArrayList<Integer> clusterList0 = new ArrayList<Integer>();
         clusterList0.add(1);
@@ -192,18 +272,19 @@ public class CreateList {
         clusterArray.add(clusterList0);
         clusterArray.add(clusterList1);
 
-        
         for (int i = 0; i < clusterArray.size(); i++) {
             System.out.println("Cluster " + (i + 1));
+                
             ArrayList<Integer> currentList = clusterArray.get(i);
+                
             //now iterate on the current list
             for (int j = 0; j < currentList.size(); j++) {
+                
                 Integer s = currentList.get(j);
                 System.out.println(s);
+                
             }
-        }
-
-        
+        }*/
 // https://commons.apache.org/proper/commons-text/jacoco/org.apache.commons.text.similarity/HammingDistance.java.html
     }
 
