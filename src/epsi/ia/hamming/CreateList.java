@@ -1,5 +1,6 @@
 package epsi.ia.hamming;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CreateList {
@@ -21,7 +22,7 @@ public class CreateList {
 
         System.out.println("Vous avez choisi d'entrer " + numberOfExamples + " exemples.");
 
-        System.out.println("Combien d'entitÃ©s formeront votre tableau (entier > 0) ?");
+        System.out.println("Combien d'entités formeront votre tableau (entier > 0) ?");
         //numberOfEntities = scan.nextInt();
         numberOfEntities = 4;
         while (numberOfEntities < -1) {
@@ -29,7 +30,7 @@ public class CreateList {
             numberOfEntities = scan.nextInt();
         }
 
-        System.out.println("Vous avez choisi d'entrer " + numberOfEntities + " entitÃ©s.");
+        System.out.println("Vous avez choisi d'entrer " + numberOfEntities + " entités.");
 
         Object[][] TableList = new Object[numberOfExamples][numberOfEntities];
 
@@ -37,7 +38,7 @@ public class CreateList {
         for (int i = 0; i < numberOfExamples; i++) {
             System.out.println("Exemple " + (i + 1) + " :");
             for (int j = 0; j < numberOfEntities; j++) {
-                System.out.println("---- EntitÃ© " + (j + 1) + " :");
+                System.out.println("---- Entité " + (j + 1) + " :");
 
                 TableList[i][j] = scan.nextLine();
                 System.out.println(TableList[i][j]);
@@ -54,7 +55,7 @@ public class CreateList {
         TableList[1][2] = "2";
         TableList[1][3] = "Fine";
 
-        TableList[2][0] = "FoncÃ©e";
+        TableList[2][0] = "Foncée";
         TableList[2][1] = "2";
         TableList[2][2] = "2";
         TableList[2][3] = "Fine";
@@ -67,34 +68,34 @@ public class CreateList {
         TableList[4][0] = "Claire";
         TableList[4][1] = "2";
         TableList[4][2] = "2";
-        TableList[4][3] = "Ã‰paisse";
+        TableList[4][3] = "Épaisse";
 
         TableList[5][0] = "Claire";
         TableList[5][1] = "1";
         TableList[5][2] = "1";
-        TableList[5][3] = "Ã‰paisse";
+        TableList[5][3] = "Épaisse";
 
-        TableList[6][0] = "FoncÃ©e";
+        TableList[6][0] = "Foncée";
         TableList[6][1] = "2";
         TableList[6][2] = "2";
-        TableList[6][3] = "Ã‰paisse";
+        TableList[6][3] = "Épaisse";
 
-        TableList[7][0] = "FoncÃ©e";
+        TableList[7][0] = "Foncée";
         TableList[7][1] = "1";
         TableList[7][2] = "1";
         TableList[7][3] = "Fine";
 
-        TableList[8][0] = "FoncÃ©e";
+        TableList[8][0] = "Foncée";
         TableList[8][1] = "1";
         TableList[8][2] = "1";
-        TableList[8][3] = "Ã‰paisse";
+        TableList[8][3] = "Épaisse";
 
-        TableList[9][0] = "FoncÃ©e";
+        TableList[9][0] = "Foncée";
         TableList[9][1] = "2";
         TableList[9][2] = "1";
-        TableList[9][3] = "Ã‰paisse";
+        TableList[9][3] = "Épaisse";
 
-        System.out.println("Tableau des entitÃ©s :");
+        System.out.println("Tableau des entités :");
         for (int i = 0; i < numberOfExamples; i++) {
             System.out.println(" | " + TableList[i][0] + " | " + TableList[i][1] + " | " + TableList[i][2] + " | " + TableList[i][3] + " | ");
         }
@@ -102,7 +103,7 @@ public class CreateList {
         //Distance de Hamming :
         int hammingArray[][] = new int[numberOfExamples][numberOfExamples];
 
-        //Nombre d'exemples Ã©tudiÃ©s
+        //Nombre d'exemples étudiés
         for (int i = 0; i < numberOfExamples; i++) {
 
             //Nombres de fois ou on compare l'exemple
@@ -110,7 +111,7 @@ public class CreateList {
 
                 int hammingCount = 0;
 
-                //Nombre de fois oÃ¹ on compare les entitÃ©s
+                //Nombre de fois oÃ¹ on compare les entités
                 for (int k = 0; k < numberOfEntities; k++) {
 
                     if (TableList[i][k] != TableList[j][k]) {
@@ -118,7 +119,7 @@ public class CreateList {
                     }
                 }
                 hammingArray[i][j] = hammingCount;
-                //System.out.println(" Nombre de diffÃ©rences entre l'exemple " + (i + 1) + " et l'exemple " + (j + 1) + " : " + hammingArray[i][j]);
+                //System.out.println(" Nombre de différences entre l'exemple " + (i + 1) + " et l'exemple " + (j + 1) + " : " + hammingArray[i][j]);
 
             }
         }
@@ -147,8 +148,7 @@ public class CreateList {
                     maxHammingDistance = hammingArray[i][j];
                 }
 
-                //System.out.println("RÃ©sultat : Mini = " + minHammingDistance + " || Maxi = " + maxHammingDistance);
-
+                //System.out.println("Résultat : Mini = " + minHammingDistance + " || Maxi = " + maxHammingDistance);
             }
         }
         System.out.println("Distance de Hamming minimale : " + minHammingDistance);
@@ -158,17 +158,52 @@ public class CreateList {
         //int cluster = scan.nextInt();
         int cluster = 2;
 
-        int clusterArray[][] = new int[cluster][];
+        //int clusterArray[] = new int[cluster];
+        
+        /*
+        for (int i = 0; i < cluster; i++) {
 
-        for (int i = 0; i < numberOfExamples; i++) {
-            for (int j = 0; j < numberOfExamples; j++) {
-                if(hammingArray[i][j] == minHammingDistance) {
-                    clusterArray[0][0] = (j+1); 
+            ArrayList<Integer> clusterList = new ArrayList<Integer>();
+            clusterArray[i] =;
+
+        }
+
+         */
+        ArrayList<ArrayList<Integer>> clusterArray = new ArrayList<ArrayList<Integer>>();
+        
+                for (int i = 0; i < cluster; i++) {
                     
                 }
+
+        ArrayList<Integer> clusterList0 = new ArrayList<Integer>();
+        clusterList0.add(1);
+        clusterList0.add(2);
+        clusterList0.add(3);
+        clusterList0.add(4);
+        clusterList0.add(5);
+        clusterList0.add(7);
+
+        ArrayList<Integer> clusterList1 = new ArrayList<Integer>();
+        clusterList1.add(6);
+        clusterList1.add(8);
+        clusterList1.add(9);
+        clusterList1.add(10);
+
+        clusterArray.add(clusterList0);
+        clusterArray.add(clusterList1);
+
+        
+        for (int i = 0; i < clusterArray.size(); i++) {
+            System.out.println("Cluster " + (i + 1));
+            ArrayList<Integer> currentList = clusterArray.get(i);
+            //now iterate on the current list
+            for (int j = 0; j < currentList.size(); j++) {
+                Integer s = currentList.get(j);
+                System.out.println(s);
             }
-            
         }
+
+        
 // https://commons.apache.org/proper/commons-text/jacoco/org.apache.commons.text.similarity/HammingDistance.java.html
     }
 
