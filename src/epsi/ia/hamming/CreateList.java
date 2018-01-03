@@ -211,6 +211,5 @@ public class CreateList {
         for (int i = 0; i < clusterArray.size(); i++) {
             System.out.println("Voici la liste du clusters " + (i + 1) + " : " + clusterArray.get(i));
         }
-        
     }
 }
