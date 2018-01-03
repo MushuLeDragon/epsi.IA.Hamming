@@ -126,8 +126,10 @@ public class CreateList {
         }
 
         System.out.println("Tableau des distances de Hamming :");
+        System.out.println("j/y =.|| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
+        System.out.println("------------------------------------------------");
         for (int i = 0; i < numberOfExamples; i++) {
-            System.out.println(" | " + hammingArray[i][0] + " | " + hammingArray[i][1] + " | " + hammingArray[i][2] + " | " + hammingArray[i][3] + " | " + hammingArray[i][4] + " | " + hammingArray[i][5] + " | " + hammingArray[i][6] + " | " + hammingArray[i][7] + " | " + hammingArray[i][8] + " | " + hammingArray[i][9] + " | ");
+            System.out.println("i/x=" + i + " || " + hammingArray[i][0] + " | " + hammingArray[i][1] + " | " + hammingArray[i][2] + " | " + hammingArray[i][3] + " | " + hammingArray[i][4] + " | " + hammingArray[i][5] + " | " + hammingArray[i][6] + " | " + hammingArray[i][7] + " | " + hammingArray[i][8] + " | " + hammingArray[i][9] + " | ");
         }
 
         //Les Clusters :
@@ -177,18 +179,23 @@ public class CreateList {
                 for (int y = (x + 1); y < numberOfExamples; y++) {
 
                     int z = 0;
+                    int clusterToPass = 0;
 
                     if (restExampleList.size() != 0) {
                         for (z = 0; z < restExampleList.size(); z++) {
                             //System.out.println("RestClustur en stck : " + restExampleList.get(z));
                             if ((x + 1) == restExampleList.get(z)) {
                                 System.out.println("Exemple " + (x + 1) + " non compté car ne fait pas partie du petit cluster");
+                                clusterToPass = restExampleList.get(z);
+                                //System.out.println(clusterToPass);
                                 break;
                             }
                         }
                     }
-
-                    if (hammingArray[x][y] == minHammingDistance) {
+                    //System.out.println(clusterToPass);
+                    if ((x + 1) == clusterToPass) {
+                        break;
+                    } else if (hammingArray[x][y] == minHammingDistance) {
                         clusterList.add(y);
                         System.out.println("Ajout de l'exemple " + (y + 1) + " au cluster 1");
 
@@ -242,50 +249,7 @@ public class CreateList {
                 System.out.println(s);
             }
         }
-
-        /*
-        ArrayList<ArrayList<Integer>> clusterArray = new ArrayList<ArrayList<Integer>>();
-
-        for (int i = 0; i < cluster; i++) {
-
-            ArrayList<Integer> clusterList = new ArrayList<Integer>();
-
-        }
-
-        
-        ArrayList<ArrayList<Integer>> clusterArray = new ArrayList<ArrayList<Integer>>();
-
-        ArrayList<Integer> clusterList0 = new ArrayList<Integer>();
-        clusterList0.add(1);
-        clusterList0.add(2);
-        clusterList0.add(3);
-        clusterList0.add(4);
-        clusterList0.add(5);
-        clusterList0.add(7);
-
-        ArrayList<Integer> clusterList1 = new ArrayList<Integer>();
-        clusterList1.add(6);
-        clusterList1.add(8);
-        clusterList1.add(9);
-        clusterList1.add(10);
-
-        clusterArray.add(clusterList0);
-        clusterArray.add(clusterList1);
-
-        for (int i = 0; i < clusterArray.size(); i++) {
-            System.out.println("Cluster " + (i + 1));
-                
-            ArrayList<Integer> currentList = clusterArray.get(i);
-                
-            //now iterate on the current list
-            for (int j = 0; j < currentList.size(); j++) {
-                
-                Integer s = currentList.get(j);
-                System.out.println(s);
-                
-            }
-        }*/
-// https://commons.apache.org/proper/commons-text/jacoco/org.apache.commons.text.similarity/HammingDistance.java.html
+    
     }
 
 }
