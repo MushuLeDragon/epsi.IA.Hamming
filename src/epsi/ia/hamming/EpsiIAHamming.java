@@ -11,7 +11,7 @@ public class EpsiIAHamming {
         // TODO code application logic here
 
         CreateList();
-
+                
     }
 
 }
