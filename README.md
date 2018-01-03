@@ -1,6 +1,6 @@
 # Hamming distance
 
-## How does it works ?
+## How does it work ?
 
 - Create your table list :
   - How many examples ?
