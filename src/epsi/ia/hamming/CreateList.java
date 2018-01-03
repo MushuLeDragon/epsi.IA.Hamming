@@ -1,6 +1,8 @@
 package epsi.ia.hamming;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -162,65 +164,80 @@ public class CreateList {
         int cluster = 2;
         System.out.println("Vous avez choisi de séparer les exemples en " + cluster + " cluster(s).");
 
-        List<Integer> exampleList = new ArrayList<Integer>();
-        for (int i = 0; i < numberOfExamples; i++) {
-            exampleList.add(i + 1);
-        }
-
         List<Integer> restExampleList = new ArrayList<Integer>();
 
         List<List<Integer>> clusterArray = new ArrayList<List<Integer>>();
+
         for (int i = 0; i < cluster; i++) {
             List<Integer> clusterList = new ArrayList<>();
 
-            for (int x = 0; x < numberOfExamples; x++) {
-                System.out.println("Exemple " + (x + 1));
+            if (i != 0) {
 
-                for (int y = (x + 1); y < numberOfExamples; y++) {
+                if (!restExampleList.isEmpty()) {
+                    for (int j = restExampleList.size(); j > 0; j--) {
+                        clusterList.add(restExampleList.get((j - 1)));
+                        restExampleList.remove(j - 1);
+                    }
+                }
 
-                    int z = 0;
-                    int clusterToPass = 0;
+            } else {
 
-                    if (restExampleList.size() != 0) {
+                for (int x = 0; x < numberOfExamples; x++) {
+                    //System.out.println("Exemple " + (x + 1));
 
-                        //Optimiser le for en mettant un restExampleList.contains(x+1);
-                        for (z = 0; z < restExampleList.size(); z++) {
-                            //System.out.println("RestClustur en stck : " + restExampleList.get(z));
-                            if ((x + 1) == restExampleList.get(z)) {
-                                System.out.println("Exemple " + (x + 1) + " non compté car ne fait pas partie du petit cluster");
-                                clusterToPass = restExampleList.get(z);
-                                //System.out.println(clusterToPass);
-                                break;
+                    for (int y = (x + 1); y < numberOfExamples; y++) {
+                        int z = 0;
+                        int clusterToPass = 0;
+
+                        if (restExampleList.size() != 0) {
+
+                            //Optimiser le for en mettant un restExampleList.contains(x+1);
+                            for (z = 0; z < restExampleList.size(); z++) {
+                                //System.out.println("RestClustur en stck : " + restExampleList.get(z));
+                                if ((x + 1) == restExampleList.get(z)) {
+                                    //System.out.println("Exemple " + (x + 1) + " non compté car ne fait pas partie du petit cluster");
+                                    clusterToPass = restExampleList.get(z);
+                                    //System.out.println(clusterToPass);
+                                    break;
+                                }
                             }
                         }
-                    }
-                    //System.out.println(clusterToPass);
-                    if ((x + 1) == clusterToPass) {
-                        break;
-                    } else if (hammingArray[x][y] == minHammingDistance) {
-                        if (!clusterList.contains(x)) {
-                            clusterList.add(x);
-                            System.out.println("Ajout de l'exemple " + (x + 1) + " au cluster 1");
-                        }
-                        if (!clusterList.contains(y)) {
-                            clusterList.add(y);
-                            System.out.println("Ajout de l'exemple " + (x + 1) + " au cluster 1");
-                        }
+                        //System.out.println(clusterToPass);
+                        if ((x + 1) == clusterToPass) {
+                            break;
+                        } else if (hammingArray[x][y] == minHammingDistance) {
+                            if (!clusterList.contains(x)) {
+                                clusterList.add(x);
+                                //System.out.println("Ajout de l'exemple " + (x + 1) + " au cluster 1");
+                            }
+                            if (!clusterList.contains(y)) {
+                                clusterList.add(y);
+                                //System.out.println("Ajout de l'exemple " + (x + 1) + " au cluster 1");
+                            }
 
-                    } else if (hammingArray[x][y] == maxHammingDistance) {
-                        if (!restExampleList.contains((y + 1))) {
-                            restExampleList.add((y + 1));
-                            System.out.println("Ajout de l'exemple " + (y + 1) + " a la liste d'attente");
-                            System.out.println("Taille de la liste restExampleList " + restExampleList.size());
+                        } else if (hammingArray[x][y] == maxHammingDistance) {
+                            if (!restExampleList.contains((y + 1))) {
+                                restExampleList.add((y + 1));
+                                //System.out.println("Ajout de l'exemple " + (y + 1) + " a la liste d'attente");
+                                //System.out.println("Taille de la liste restExampleList " + restExampleList.size());
+                            }
                         }
                     }
                 }
             }
+            Collections.sort(clusterList);
             clusterArray.add(clusterList);
         }
 
         for (int i = 0; i < clusterArray.size(); i++) {
+            System.out.println("Voici la liste du clusters " + (i + 1) + " : " + clusterArray.get(i));
+        }
 
+
+        /*
+        for (int i = 0; i < clusterArray.size(); i++) {
+
+            
             System.out.println("Cluster " + (i + 1));
 
             ArrayList<Integer> currentList = (ArrayList<Integer>) clusterArray.get(i);
@@ -241,8 +258,7 @@ public class CreateList {
                 Integer s = currentList.get(j);
                 System.out.println(s);
             }
-        }
-
+        }*/
     }
 
 }
