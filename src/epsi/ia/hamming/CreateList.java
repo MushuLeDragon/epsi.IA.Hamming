@@ -1,7 +1,6 @@
 package epsi.ia.hamming;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -10,44 +9,33 @@ public class CreateList {
 
     public static void CreateList() {
 
-        int numberOfExamples, numberOfEntities;
-
         Scanner scan = new Scanner(System.in);
+        int numberOfExamples, numberOfEntities;
 
         System.out.println("Combien d'exemples allez-vous utiliser (entier > 0)?");
         //numberOfExamples = scan.nextInt();
         numberOfExamples = 10;
 
         while (numberOfExamples < -1) {
-            System.out.println("Le chiffre choisi n'est pas un entier > Ã  0");
+            System.out.println("Le chiffre choisi n'est pas un entier > à  0");
             numberOfExamples = scan.nextInt();
         }
-
-        System.out.println("Vous avez choisi d'entrer " + numberOfExamples + " exemples.");
+        
+        System.out.println("Vous avez choisi d'entrer " + numberOfExamples + " exemples.\n");
 
         System.out.println("Combien d'entités formeront votre tableau (entier > 0) ?");
         //numberOfEntities = scan.nextInt();
         numberOfEntities = 4;
+        
         while (numberOfEntities < -1) {
-            System.out.println("Le chiffre choisi n'est pas un entier > Ã  0");
+            System.out.println("Le chiffre choisi n'est pas un entier > à  0");
             numberOfEntities = scan.nextInt();
         }
 
-        System.out.println("Vous avez choisi d'entrer " + numberOfEntities + " entités.");
+        System.out.println("Vous avez choisi d'entrer " + numberOfEntities + " entités.\n");
 
         Object[][] TableList = new Object[numberOfExamples][numberOfEntities];
 
-        /*
-        for (int i = 0; i < numberOfExamples; i++) {
-            System.out.println("Exemple " + (i + 1) + " :");
-            for (int j = 0; j < numberOfEntities; j++) {
-                System.out.println("---- Entité " + (j + 1) + " :");
-
-                TableList[i][j] = scan.nextLine();
-                System.out.println(TableList[i][j]);
-            }
-        }
-         */
         TableList[0][0] = "Claire";
         TableList[0][1] = "2";
         TableList[0][2] = "2";
@@ -127,7 +115,7 @@ public class CreateList {
             }
         }
 
-        System.out.println("Tableau des distances de Hamming :");
+        System.out.println("\nTableau des distances de Hamming :");
         System.out.println("j/y =.|| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
         System.out.println("------------------------------------------------");
         for (int i = 0; i < numberOfExamples; i++) {
@@ -156,10 +144,10 @@ public class CreateList {
                 //System.out.println("Résultat : Mini = " + minHammingDistance + " || Maxi = " + maxHammingDistance);
             }
         }
-        System.out.println("Distance de Hamming minimale : " + minHammingDistance);
+        System.out.println("\nDistance de Hamming minimale : " + minHammingDistance);
         System.out.println("Distance de Hamming maximale : " + maxHammingDistance);
 
-        System.out.println("En combien de clusteurs voulez-vous diviser les exemples ?");
+        System.out.println("\nEn combien de clusteurs voulez-vous diviser les exemples ?");
         //int cluster = scan.nextInt();
         int cluster = 2;
         System.out.println("Vous avez choisi de séparer les exemples en " + cluster + " cluster(s).");
