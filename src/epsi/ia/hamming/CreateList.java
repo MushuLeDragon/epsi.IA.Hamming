@@ -182,6 +182,8 @@ public class CreateList {
                     int clusterToPass = 0;
 
                     if (restExampleList.size() != 0) {
+
+                        //Optimiser le for en mettant un restExampleList.contains(x+1);
                         for (z = 0; z < restExampleList.size(); z++) {
                             //System.out.println("RestClustur en stck : " + restExampleList.get(z));
                             if ((x + 1) == restExampleList.get(z)) {
@@ -196,33 +198,24 @@ public class CreateList {
                     if ((x + 1) == clusterToPass) {
                         break;
                     } else if (hammingArray[x][y] == minHammingDistance) {
-                        clusterList.add(y);
-                        System.out.println("Ajout de l'exemple " + (y + 1) + " au cluster 1");
+                        if (!clusterList.contains(x)) {
+                            clusterList.add(x);
+                            System.out.println("Ajout de l'exemple " + (x + 1) + " au cluster 1");
+                        }
+                        if (!clusterList.contains(y)) {
+                            clusterList.add(y);
+                            System.out.println("Ajout de l'exemple " + (x + 1) + " au cluster 1");
+                        }
 
                     } else if (hammingArray[x][y] == maxHammingDistance) {
-                        restExampleList.add((y + 1));
-                        System.out.println("Ajout de l'exemple " + (y + 1) + " a la liste d'attente");
-                        System.out.println("Taille de la liste ResteCluster " + restExampleList.size());
+                        if (!restExampleList.contains((y + 1))) {
+                            restExampleList.add((y + 1));
+                            System.out.println("Ajout de l'exemple " + (y + 1) + " a la liste d'attente");
+                            System.out.println("Taille de la liste restExampleList " + restExampleList.size());
+                        }
                     }
                 }
             }
-
-            /*
-            if (i == 0) {
-
-                clusterList.add(1);
-                clusterList.add(2);
-                clusterList.add(3);
-                clusterList.add(4);
-                clusterList.add(5);
-                clusterList.add(7);
-            } else if (i == 1) {
-
-                clusterList.add(6);
-                clusterList.add(8);
-                clusterList.add(9);
-                clusterList.add(10);
-            }*/
             clusterArray.add(clusterList);
         }
 
@@ -249,7 +242,7 @@ public class CreateList {
                 System.out.println(s);
             }
         }
-    
+
     }
 
 }
