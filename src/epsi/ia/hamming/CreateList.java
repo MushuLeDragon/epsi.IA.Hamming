@@ -20,13 +20,13 @@ public class CreateList {
             System.out.println("Le chiffre choisi n'est pas un entier > à  0");
             numberOfExamples = scan.nextInt();
         }
-        
+
         System.out.println("Vous avez choisi d'entrer " + numberOfExamples + " exemples.\n");
 
         System.out.println("Combien d'entités formeront votre tableau (entier > 0) ?");
         //numberOfEntities = scan.nextInt();
         numberOfEntities = 4;
-        
+
         while (numberOfEntities < -1) {
             System.out.println("Le chiffre choisi n'est pas un entier > à  0");
             numberOfEntities = scan.nextInt();
@@ -94,17 +94,12 @@ public class CreateList {
         //Distance de Hamming :
         int hammingArray[][] = new int[numberOfExamples][numberOfExamples];
 
-        //Nombre d'exemples étudiés
         for (int i = 0; i < numberOfExamples; i++) {
-
-            //Nombres de fois ou on compare l'exemple
             for (int j = (i + 1); j < numberOfExamples; j++) {
 
                 int hammingCount = 0;
 
-                //Nombre de fois où on compare les entités
                 for (int k = 0; k < numberOfEntities; k++) {
-
                     if (TableList[i][k] != TableList[j][k]) {
                         hammingCount++;
                     }
@@ -140,27 +135,24 @@ public class CreateList {
                 if (maxHammingDistance < hammingArray[i][j]) {
                     maxHammingDistance = hammingArray[i][j];
                 }
-
                 //System.out.println("Résultat : Mini = " + minHammingDistance + " || Maxi = " + maxHammingDistance);
             }
         }
-        System.out.println("\nDistance de Hamming minimale : " + minHammingDistance);
-        System.out.println("Distance de Hamming maximale : " + maxHammingDistance);
 
+        //System.out.println("Distance de Hamming minimale : " + minHammingDistance);
+        //System.out.println("Distance de Hamming maximale : " + maxHammingDistance);
         System.out.println("\nEn combien de clusteurs voulez-vous diviser les exemples ?");
         //int cluster = scan.nextInt();
         int cluster = 2;
         System.out.println("Vous avez choisi de séparer les exemples en " + cluster + " cluster(s).");
 
         List<Integer> restExampleList = new ArrayList<Integer>();
-
         List<List<Integer>> clusterArray = new ArrayList<List<Integer>>();
 
         for (int i = 0; i < cluster; i++) {
             List<Integer> clusterList = new ArrayList<>();
 
             if (i != 0) {
-
                 if (!restExampleList.isEmpty()) {
                     for (int j = restExampleList.size(); j > 0; j--) {
                         clusterList.add(restExampleList.get((j - 1)));
@@ -169,7 +161,6 @@ public class CreateList {
                 }
 
             } else {
-
                 for (int x = 0; x < numberOfExamples; x++) {
                     //System.out.println("Exemple " + (x + 1));
 
@@ -194,18 +185,18 @@ public class CreateList {
                         if ((x + 1) == clusterToPass) {
                             break;
                         } else if (hammingArray[x][y] == minHammingDistance) {
-                            if (!clusterList.contains(x)) {
-                                clusterList.add(x);
+                            if (!clusterList.contains(x + 1)) {
+                                clusterList.add(x + 1);
                                 //System.out.println("Ajout de l'exemple " + (x + 1) + " au cluster 1");
                             }
-                            if (!clusterList.contains(y)) {
-                                clusterList.add(y);
+                            if (!clusterList.contains(y + 1)) {
+                                clusterList.add(y + 1);
                                 //System.out.println("Ajout de l'exemple " + (x + 1) + " au cluster 1");
                             }
 
                         } else if (hammingArray[x][y] == maxHammingDistance) {
-                            if (!restExampleList.contains((y + 1))) {
-                                restExampleList.add((y + 1));
+                            if (!restExampleList.contains(y + 1)) {
+                                restExampleList.add(y + 1);
                                 //System.out.println("Ajout de l'exemple " + (y + 1) + " a la liste d'attente");
                                 //System.out.println("Taille de la liste restExampleList " + restExampleList.size());
                             }
@@ -220,33 +211,6 @@ public class CreateList {
         for (int i = 0; i < clusterArray.size(); i++) {
             System.out.println("Voici la liste du clusters " + (i + 1) + " : " + clusterArray.get(i));
         }
-
-
-        /*
-        for (int i = 0; i < clusterArray.size(); i++) {
-
-            
-            System.out.println("Cluster " + (i + 1));
-
-            ArrayList<Integer> currentList = (ArrayList<Integer>) clusterArray.get(i);
-            //now iterate on the current list
-            for (int j = 0; j < currentList.size(); j++) {
-                Integer s = currentList.get(j);
-                System.out.println(s);
-            }
-        }
-
-        for (int i = 0; i < clusterArray.size(); i++) {
-
-            System.out.println("Cluster " + (i + 1));
-
-            ArrayList<Integer> currentList = (ArrayList<Integer>) clusterArray.get(i);
-            //now iterate on the current list
-            for (int j = 0; j < currentList.size(); j++) {
-                Integer s = currentList.get(j);
-                System.out.println(s);
-            }
-        }*/
+        
     }
-
 }
